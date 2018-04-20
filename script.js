@@ -17,6 +17,7 @@
 var zIndexCounter;
 var pos = [];
 var origin;
+var waitForUser;
 
 
 // perform setup tasks when page first loads
@@ -58,7 +59,8 @@ function loadDirections(string) {
    geoTest();
 }
 
-function geotest() {
+function geoTest() {
+    waitForUser = setTimeout(fail, 10000);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(createDirections, fail, {timeout: 10000});
     } else {
@@ -67,6 +69,7 @@ function geotest() {
 }
 
 function createDirections(position) {
+    clearTimeout(waitForUser);
     console.log("Longitude: " + position.coords.longitude);
     console.log("Latitude: " + position.coords.latitude);
 }
