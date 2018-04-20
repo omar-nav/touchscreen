@@ -75,7 +75,8 @@ function createDirections(position) {
     var currPostLat = position.coords.latitude;
     var currPosLng = position.coords.longitude;
     var mapOptions = {
-        center: new google.maps.LatLng(currPostLat, currPosLng),
+        // center: new google.maps.LatLng(currPostLat, currPosLng),
+        center: new google.maps.LatLng(39.96118, -82.99879),
         zoom: 12
     };
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
