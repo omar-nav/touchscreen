@@ -70,11 +70,19 @@ function geoTest() {
 
 function createDirections(position) {
     clearTimeout(waitForUser);
-    console.log("Longitude: " + position.coords.longitude);
-    console.log("Latitude: " + position.coords.latitude);
+    // console.log("Longitude: " + position.coords.longitude);
+    // console.log("Latitude: " + position.coords.latitude);
+    var currPostLat = position.coords.latitude;
+    var currPosLng = position.coords.longitude;
+    var mapOptions = {
+        center: new google.maps.LatLng(currPostLat, currPosLng),
+        zoom: 12
+    };
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }
 function fail() {
-    console.log("Geolocation information not available or not authorized.")
+    // console.log("Geolocation information not available or not authorized.")
+    document.getElementById("map").innerHTML = "Unable to access your current location.";
 }
 
 // run setUpPage() function when page finishes loading
