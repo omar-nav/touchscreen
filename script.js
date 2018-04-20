@@ -155,7 +155,7 @@ function removeTouchListener() {
    this.removeEventListener("pointermove", moveDrag, false);
    this.removeEventListener("touchend", removeTouchListener, false);
    this.removeEventListener("mspointerup", removeTouchListener, false);
-   this.removeEventListener("poitnerup", removeTouchListener, false);
+   this.removeEventListener("pointerup", removeTouchListener, false);
 }
 
 
