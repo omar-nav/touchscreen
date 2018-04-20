@@ -86,9 +86,15 @@ function moveDrag(evt) {
 // identify location of object
 function getCoords(evt) {
    var coords = [];
+   if (evt.targetTouches && evt.targetTouches.length) {
+      var thisTouch = evt.targetTcouhes[0];
+      coords[0] = thisTouch.clientX;
+      coords[1] = thisTouch.clientY;
+   } else {
    coords[0] = evt.clientX;
    coords[1] = evt.clientY;
    return coords;
+   }
 }
 
 // remove mouse event listeners when dragging ends
