@@ -64,6 +64,7 @@ function startDrag(evt) {
     // on top of others
     zIndexCounter++;
     if (evt.type !== "mousedown") {
+       evt.preventDefault();
        this.addEventListener("touchmove", moveDrag, false);
        this.addEventListener("touchend", removeTouchListener, false);
     } else {
