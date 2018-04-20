@@ -26,13 +26,18 @@ function setUpPage() {
    var movableItems = document.querySelectorAll("#room div");
    zIndexCounter = movableItems.length + 1;
    for (var i = 0; i < movableItems.length; i++) {
-      if (movableItems[i].addEventListener) {
+       movableItems[i].addEventListener("mspointerdown", startDrag, false);
+       movableItems[i].addEventListener("pointerdown", startDrag, false);
+       if (movableItems[i].addEventListener) {
           movableItems[i].addEventListener("mousedown", startDrag, false);
           movableItems[i].addEventListener("touchstart", startDrag, false);
       } else if (movableItems[i].attachEvent) {
           movableItems[i].attachEvent("onmousedown", startDrag);
       }
    }
+   // disable IE10+ interface gestures
+    movableItems[i].style.msTouchAction = "none";
+   movableItems[i].style.touchAction = "none";
 }
 
 // configure page to display Setup content
@@ -66,7 +71,11 @@ function startDrag(evt) {
     if (evt.type !== "mousedown") {
        evt.preventDefault();
        this.addEventListener("touchmove", moveDrag, false);
+       this.addEventListener("mspointermove", moveDrag, false);
+       this.addEventListener("pointermove", moveDrag, false);
        this.addEventListener("touchend", removeTouchListener, false);
+       this.addEventListener("mspointerup", removeTouchListener, false);
+       this.addEventListener("pointerup", removeTouchListener, false);
     } else {
     this.addEventListener("mousemove", moveDrag, false);
     this.addEventListener("mouseup", removeDragListener, false);
@@ -107,7 +116,11 @@ function removeDragListener() {
 // remove touch event listeners when dragging ends
 function removeTouchListener() {
    this.removeEventListener("touchmove", moveDrag, false);
+   this.removeEventListener("mspointermove", moveDrag, false);
+   this.removeEventListener("pointermove", moveDrag, false);
    this.removeEventListener("touchend", removeTouchListener, false);
+   this.removeEventListener("mspointerup", removeTouchListener, false);
+   this.removeEventListener("poitnerup", removeTouchListener, false);
 }
 
 
