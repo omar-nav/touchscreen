@@ -55,6 +55,23 @@ function loadDirections(string) {
    document.querySelector("nav ul li:last-of-type").className = "current";
    document.getElementById("setup").style.display = "none";
    document.getElementById("location").style.display = "block";
+   geoTest();
+}
+
+function geotest() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(createDirections, fail, {timeout: 10000});
+    } else {
+        fail();
+    }
+}
+
+function createDirections(position) {
+    console.log("Longitude: " + position.coords.longitude);
+    console.log("Latitude: " + position.coords.latitude);
+}
+function fail() {
+    console.log("Geolocation information not available or not authorized.")
 }
 
 // run setUpPage() function when page finishes loading
