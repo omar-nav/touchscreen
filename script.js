@@ -34,10 +34,10 @@ function setUpPage() {
       } else if (movableItems[i].attachEvent) {
           movableItems[i].attachEvent("onmousedown", startDrag);
       }
+       // disable IE10+ interface gestures
+       movableItems[i].style.msTouchAction = "none";
+       movableItems[i].style.touchAction = "none";
    }
-   // disable IE10+ interface gestures
-    movableItems[i].style.msTouchAction = "none";
-   movableItems[i].style.touchAction = "none";
 }
 
 // configure page to display Setup content
